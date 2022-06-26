@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SaveAMinuteLauncher</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--    Home Screen Fragment-->
+    <string name="day">DAY</string>
+    <string name="year_in_progress">YEAR IN PROGRESS</string>
+    <string name="day_in_progress">DAY IN PROGRESS</string>
+
+    Item_App_View
+    <string name="app_icon">App Icon</string>
+
+</resources>
