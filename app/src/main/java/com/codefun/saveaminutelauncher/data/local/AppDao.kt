@@ -14,12 +14,24 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface AppDao {
 
+    /**
+     * Insert
+     */
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertApp(app: App)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertApps(apps: List<App>)
 
+    /**
+     * Read
+     */
+
     @Query("SELECT * FROM app ORDER BY name ASC")
     fun getApps(): Flow<List<App>>
+
+    @Query("SELECT * FROM app WHERE isInHomeScreen = 1 ORDER BY name ASC")
+    fun getHomeScreenApps(): Flow<List<App>>
+
 }

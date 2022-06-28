@@ -12,6 +12,10 @@ import javax.inject.Inject
 
 class AppRepositoryImpl @Inject constructor(private val appDao: AppDao) : AppRepository {
 
+    /**
+     * Insert
+     */
+
     override suspend fun insertApp(app: App) {
         appDao.insertApp(app)
     }
@@ -20,7 +24,15 @@ class AppRepositoryImpl @Inject constructor(private val appDao: AppDao) : AppRep
         appDao.insertApps(apps)
     }
 
+    /**
+     * Read
+     */
+
     override fun getApps(): Flow<List<App>> {
         return appDao.getApps()
+    }
+
+    override fun getHomeScreenApps(): Flow<List<App>> {
+        return appDao.getHomeScreenApps()
     }
 }

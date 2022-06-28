@@ -24,10 +24,10 @@ class GetUriFromDrawableUseCase @Inject constructor(
         val bitmap = icon.toBitmapOrNull()
         return@withContext bitmap?.let {
             application.openFileOutput(fileName, Context.MODE_PRIVATE).use {
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)
+                bitmap.compress(Bitmap.CompressFormat.PNG, 90, it)
             }
             try {
-                File(fileName).toUri().toString()
+                File(application.filesDir.absolutePath ,"/$fileName").toUri().toString()
             } catch (e: Exception) {
                 null
             }

@@ -1,5 +1,6 @@
 package com.codefun.saveaminutelauncher.domain.use_cases.progress_bar
 
+import com.codefun.saveaminutelauncher.di.ProgressBarModule
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -12,10 +13,10 @@ import javax.inject.Named
 private const val TAG = "GetYearInProgressUseCase"
 
 class GetYearInProgressUseCase @Inject constructor(
-    private val totalDaysOfTheYear: Int,
-    @Named("year") private val calendar: Calendar
+    @Named(ProgressBarModule.DAYS_OF_THE_YEAR) private val totalDaysOfTheYear: Int,
+    @Named(ProgressBarModule.YEAR_CALENDER) private val calendar: Calendar
 ) {
-
+    // TODO: Check that is it working on last day of year and also make it more smooth
     suspend operator fun invoke(): Int = withContext(Dispatchers.IO) {
         val spentDays = calendar.get(Calendar.DAY_OF_YEAR)
         return@withContext (spentDays * 100) / totalDaysOfTheYear

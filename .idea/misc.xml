@@ -6,9 +6,9 @@
         <entry key="app/src/main/res/drawable/screen_time_bg.xml" value="0.2305" />
         <entry key="app/src/main/res/font/source_sans_pro.xml" value="0.287962962962963" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11358447488584475" />
-        <entry key="app/src/main/res/layout/fragment_home_screen.xml" value="0.27288208007812553" />
+        <entry key="app/src/main/res/layout/fragment_home_screen.xml" value="0.4574669603156464" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.3697463989257813" />
-        <entry key="app/src/main/res/layout/item_app_view.xml" value="0.3239369710286458" />
+        <entry key="app/src/main/res/layout/item_app_view.xml" value="0.7354466756184895" />
       </map>
     </option>
   </component>

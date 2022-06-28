@@ -14,4 +14,6 @@ interface AppRepository {
     suspend fun insertApps(apps: List<App>)
 
     fun getApps(): Flow<List<App>>
+
+    fun getHomeScreenApps(): Flow<List<App>>
 }

@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
  * Created by Agam on 21,June,2022
  */
 
-@Entity()
+@Entity
 data class App(
     @PrimaryKey(autoGenerate = false)
     val packageName: String,

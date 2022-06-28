@@ -41,7 +41,7 @@ class LineProgressBar @JvmOverloads constructor(
     }
 
     override fun onDraw(canvas: Canvas?) {
-        for (i in 0..100) {
+        for (i in 0..100 step 1) {
             if (i <= percentage)
                 canvas?.drawLine(
                     (i * spaceForEachPercentage),

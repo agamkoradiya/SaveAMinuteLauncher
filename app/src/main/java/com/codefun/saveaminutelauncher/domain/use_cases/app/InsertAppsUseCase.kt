@@ -26,7 +26,7 @@ class InsertAppsUseCase @Inject constructor(
                         packageName = appInfo.packageName,
                         name = appInfo.name,
                         iconUri = getUriFromDrawableUseCase(icon = appInfo.icon, fileName = appInfo.name),
-                        screenTime = null,
+                        screenTime = (0..60).random().toString() + " min",
                         isSecured = false,
                         isInHomeScreen = false,
                         isHidden = false

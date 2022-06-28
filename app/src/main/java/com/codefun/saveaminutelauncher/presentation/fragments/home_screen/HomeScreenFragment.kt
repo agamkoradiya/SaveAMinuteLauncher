@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.codefun.saveaminutelauncher.databinding.FragmentHomeScreenBinding
+import com.codefun.saveaminutelauncher.presentation.fragments.adapters.AppAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
@@ -25,6 +27,9 @@ class HomeScreenFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val homeScreenViewModel by viewModels<HomeScreenViewModel>()
+
+    @Inject
+    lateinit var appAdapter: AppAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +44,7 @@ class HomeScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpProgressBarSection()
+        setUpRecyclerView()
     }
 
     private fun setUpProgressBarSection() {
@@ -53,7 +59,8 @@ class HomeScreenFragment : Fragment() {
                     dayInProgressValueTxt.text = "${String.format("%02d", dayInPercentage)} %"
                     dayInProgressIndicator.setProgress(dayInPercentage)
                 }
-                delay(5.seconds.inWholeMilliseconds)
+                delay(3.minutes.inWholeMilliseconds)
+//                delay(5.seconds.inWholeMilliseconds)
             }
 
         }
@@ -65,6 +72,14 @@ class HomeScreenFragment : Fragment() {
                 yearInProgressIndicator.setProgress(yearInPercentage)
             }
             // TODO: Handle How to call this method for everyday?
+        }
+    }
+
+    private fun setUpRecyclerView() {
+        binding.homeAppsRv.adapter = appAdapter
+
+        homeScreenViewModel.getHomeScreenApps().observe(viewLifecycleOwner) {
+            appAdapter.submitList(it)
         }
     }
 

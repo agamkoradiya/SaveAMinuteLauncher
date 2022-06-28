@@ -36,18 +36,17 @@ class SplashScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        findNavController().navigate(R.id.action_splashScreenFragment_to_homeScreenFragment)
-
         binding.txt.setOnClickListener {
             findNavController().navigate(R.id.action_splashScreenFragment_to_homeScreenFragment)
         }
-
+        // TODO: Fix This every time loading as you did in that launcher
         splashScreenViewModel.saveAppsIntoDbForTheFirstTime()
         splashScreenViewModel.getAppsFromDb().observe(viewLifecycleOwner) {
             it?.let {
                 Log.i(TAG, "Data found ${it.size}")
             }
         }
+
     }
 
     override fun onDestroyView() {
