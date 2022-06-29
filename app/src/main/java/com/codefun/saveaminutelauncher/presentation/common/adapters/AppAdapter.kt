@@ -1,4 +1,4 @@
-package com.codefun.saveaminutelauncher.presentation.fragments.adapters
+package com.codefun.saveaminutelauncher.presentation.common.adapters
 
 import android.net.Uri
 import android.view.LayoutInflater

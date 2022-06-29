@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/home_screen_root"
-    android:theme="@style/App2ndTheme"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
     tools:context=".presentation.fragments.home_screen.HomeScreenFragment">

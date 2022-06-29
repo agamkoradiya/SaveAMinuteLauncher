@@ -7,12 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.codefun.saveaminutelauncher.R
 import com.codefun.saveaminutelauncher.databinding.FragmentHomeScreenBinding
-import com.codefun.saveaminutelauncher.presentation.fragments.adapters.AppAdapter
+import com.codefun.saveaminutelauncher.presentation.common.adapters.AppAdapter
+import com.codefun.saveaminutelauncher.presentation.common.viewmodels.MainViewModel
 import com.codefun.saveaminutelauncher.util.listeners.OnSwipeTouchListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -29,7 +30,7 @@ class HomeScreenFragment : Fragment() {
     private var _binding: FragmentHomeScreenBinding? = null
     private val binding get() = _binding!!
 
-    private val homeScreenViewModel by viewModels<HomeScreenViewModel>()
+    private val mainViewModel by activityViewModels<MainViewModel>()
 
     @Inject
     lateinit var appAdapter: AppAdapter
@@ -60,7 +61,7 @@ class HomeScreenFragment : Fragment() {
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
                 Log.i(TAG, "onSwipeLeft: called")
-                if (findNavController().currentDestination?.id == R.id.homeScreenFragment){
+                if (findNavController().currentDestination?.id == R.id.homeScreenFragment) {
                     findNavController().navigate(R.id.action_homeScreenFragment_to_appScreenFragment)
                 }
             }
@@ -105,7 +106,7 @@ class HomeScreenFragment : Fragment() {
             // TODO: Try to find proper way to handle below scenario
             while (isActive) {
                 Log.i(TAG, "setUpProgressBarSection: DayInPercentage called")
-                dayInPercentage = homeScreenViewModel.getDayInProgress()
+                dayInPercentage = mainViewModel.getDayInProgress()
                 binding.apply {
                     dayInProgressValueTxt.text = "${String.format("%02d", dayInPercentage)} %"
                     dayInProgressIndicator.setProgress(dayInPercentage)
@@ -117,7 +118,7 @@ class HomeScreenFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            val yearInPercentage = homeScreenViewModel.getYearInProgress()
+            val yearInPercentage = mainViewModel.getYearInProgress()
             binding.apply {
                 yearInProgressValueTxt.text = "${String.format("%02d", yearInPercentage)} %"
                 yearInProgressIndicator.setProgress(yearInPercentage)
@@ -129,7 +130,7 @@ class HomeScreenFragment : Fragment() {
     private fun setUpRecyclerView() {
         binding.homeAppsRv.adapter = appAdapter
 
-        homeScreenViewModel.getHomeScreenApps().observe(viewLifecycleOwner) {
+        mainViewModel.getHomeScreenApps().observe(viewLifecycleOwner) {
             appAdapter.submitList(it)
         }
 
