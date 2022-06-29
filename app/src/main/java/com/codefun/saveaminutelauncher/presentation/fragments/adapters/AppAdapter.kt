@@ -49,9 +49,18 @@ class AppAdapter @Inject constructor() : ListAdapter<App, AppAdapter.AppViewHold
                 } else {
                     screenTimeGroup.setGone()
                 }
+
+                rootLayout.setOnClickListener {
+                    onAppClickListener?.let { it(app) }
+                }
             }
 
         }
+    }
+
+    private var onAppClickListener: ((App) -> Unit)? = null
+    fun setOnAppClickListener(listener: (App) -> Unit) {
+        onAppClickListener = listener
     }
 
     class DiffCallback : DiffUtil.ItemCallback<App>() {

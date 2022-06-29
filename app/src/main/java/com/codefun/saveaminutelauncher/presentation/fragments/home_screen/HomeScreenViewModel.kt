@@ -11,7 +11,7 @@ import javax.inject.Inject
 /**
  * Created by Agam on 27,June,2022
  */
-
+private const val TAG = "HomeScreenViewModel"
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
     private val getDayInProgressUseCase: GetDayInProgressUseCase,

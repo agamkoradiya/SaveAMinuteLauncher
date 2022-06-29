@@ -21,5 +21,14 @@
         android:id="@+id/homeScreenFragment"
         android:name="com.codefun.saveaminutelauncher.presentation.fragments.home_screen.HomeScreenFragment"
         android:label="fragment_home_screen"
-        tools:layout="@layout/fragment_home_screen" />
+        tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_homeScreenFragment_to_appScreenFragment"
+            app:destination="@id/appScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/appScreenFragment"
+        android:name="com.codefun.saveaminutelauncher.presentation.fragments.app_screen.AppScreenFragment"
+        android:label="fragment_app_screen"
+        tools:layout="@layout/fragment_app_screen" />
 </navigation>
