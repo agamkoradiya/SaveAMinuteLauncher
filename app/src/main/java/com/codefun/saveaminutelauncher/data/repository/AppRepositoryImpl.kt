@@ -1,5 +1,6 @@
 package com.codefun.saveaminutelauncher.data.repository
 
+import androidx.lifecycle.LiveData
 import com.codefun.saveaminutelauncher.data.local.AppDao
 import com.codefun.saveaminutelauncher.domain.model.App
 import com.codefun.saveaminutelauncher.domain.repository.AppRepository
@@ -34,5 +35,9 @@ class AppRepositoryImpl @Inject constructor(private val appDao: AppDao) : AppRep
 
     override fun getHomeScreenApps(): Flow<List<App>> {
         return appDao.getHomeScreenApps()
+    }
+
+    override fun searchApps(searchQuery: String): LiveData<List<App>> {
+        return appDao.searchApps(searchQuery)
     }
 }

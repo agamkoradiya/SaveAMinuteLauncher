@@ -1,5 +1,6 @@
 package com.codefun.saveaminutelauncher.domain.repository
 
+import androidx.lifecycle.LiveData
 import com.codefun.saveaminutelauncher.domain.model.App
 import kotlinx.coroutines.flow.Flow
 
@@ -16,4 +17,6 @@ interface AppRepository {
     fun getApps(): Flow<List<App>>
 
     fun getHomeScreenApps(): Flow<List<App>>
+
+    fun searchApps(searchQuery: String): LiveData<List<App>>
 }

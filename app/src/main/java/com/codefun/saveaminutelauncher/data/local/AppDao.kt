@@ -1,5 +1,6 @@
 package com.codefun.saveaminutelauncher.data.local
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -33,5 +34,8 @@ interface AppDao {
 
     @Query("SELECT * FROM app WHERE isInHomeScreen = 1 ORDER BY name ASC")
     fun getHomeScreenApps(): Flow<List<App>>
+
+    @Query("SELECT * FROM app WHERE name like :searchQuery || '%'")
+    fun searchApps(searchQuery: String): LiveData<List<App>>
 
 }
