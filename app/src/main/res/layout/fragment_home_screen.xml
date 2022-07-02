@@ -2,8 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/home_screen_root"
+    android:layout_width="match_parent"
+    android:theme="@style/App2ndTheme"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
     tools:context=".presentation.fragments.home_screen.HomeScreenFragment">
@@ -113,11 +114,27 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/horizontal_95_guideline"
         app:layout_constraintEnd_toStartOf="@+id/vertical_80_guideline"
         app:layout_constraintStart_toStartOf="@+id/vertical_10_guideline"
         app:layout_constraintTop_toTopOf="@+id/horizontal_40_guideline"
         tools:listitem="@layout/item_app_view" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:background="@drawable/rv_top_fg"
+        app:layout_constraintEnd_toEndOf="@+id/home_apps_rv"
+        app:layout_constraintStart_toStartOf="@+id/home_apps_rv"
+        app:layout_constraintTop_toTopOf="@+id/home_apps_rv" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:background="@drawable/rv_bottom_fg"
+        app:layout_constraintBottom_toBottomOf="@+id/home_apps_rv"
+        app:layout_constraintEnd_toEndOf="@+id/home_apps_rv"
+        app:layout_constraintStart_toStartOf="@+id/home_apps_rv" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horizontal_40_guideline"
@@ -146,6 +163,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_95_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/progress_barrier"

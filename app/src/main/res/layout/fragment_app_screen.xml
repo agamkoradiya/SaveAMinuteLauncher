@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/App2ndTheme"
     android:background="?attr/colorPrimary"
     android:padding="20dp"
     tools:context=".presentation.fragments.app_screen.AppScreenFragment">
@@ -21,20 +22,20 @@
         app:boxStrokeColor="?attr/colorPrimaryVariant"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0.1dp"
-        app:hintEnabled="false"
+        app:endIconDrawable="@drawable/ic_round_search"
         app:endIconMode="custom"
         app:endIconTint="?attr/colorOnPrimary"
-        app:endIconDrawable="@drawable/ic_round_search"
+        app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textVisiblePassword"
-            android:id="@+id/search_edt"
             android:textColor="?colorOnPrimary"
             android:textCursorDrawable="?attr/colorPrimaryVariant" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -52,5 +53,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
         tools:listitem="@layout/item_app_view" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:background="@drawable/rv_top_fg"
+        app:layout_constraintEnd_toEndOf="@+id/apps_rv"
+        app:layout_constraintStart_toStartOf="@+id/apps_rv"
+        app:layout_constraintTop_toTopOf="@+id/apps_rv" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:background="@drawable/rv_bottom_fg"
+        app:layout_constraintBottom_toBottomOf="@+id/apps_rv"
+        app:layout_constraintEnd_toEndOf="@+id/apps_rv"
+        app:layout_constraintStart_toStartOf="@+id/apps_rv" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
