@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.codefun.saveaminutelauncher.domain.repository.AppRepository
 import com.codefun.saveaminutelauncher.domain.use_cases.progress_bar.GetDayInProgressUseCase
 import com.codefun.saveaminutelauncher.domain.use_cases.progress_bar.GetYearInProgressUseCase
+import com.codefun.saveaminutelauncher.domain.use_cases.screen_time.GetScreenTimeAndSaveItUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -17,6 +18,8 @@ class MainViewModel @Inject constructor(
     private val getDayInProgressUseCase: GetDayInProgressUseCase,
     private val getYearInProgressUseCase: GetYearInProgressUseCase,
 
+    private val getScreenTimeAndSaveItUseCase: GetScreenTimeAndSaveItUseCase,
+
     private val appRepository: AppRepository
 ) : ViewModel() {
 
@@ -27,6 +30,8 @@ class MainViewModel @Inject constructor(
     suspend fun getDayInProgress() = getDayInProgressUseCase()
 
     suspend fun getYearInProgress() = getYearInProgressUseCase()
+
+    suspend fun getScreenTimeAndSaveIt() = getScreenTimeAndSaveItUseCase()
 
     fun getHomeScreenApps() = appRepository.getHomeScreenApps().asLiveData()
 

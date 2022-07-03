@@ -26,6 +26,14 @@ class AppRepositoryImpl @Inject constructor(private val appDao: AppDao) : AppRep
     }
 
     /**
+     * Update
+     */
+
+    override suspend fun updateScreenTime(packageName: String, screenTime: String?) {
+        appDao.updateScreenTime(packageName, screenTime)
+    }
+
+    /**
      * Read
      */
 
@@ -39,5 +47,9 @@ class AppRepositoryImpl @Inject constructor(private val appDao: AppDao) : AppRep
 
     override fun searchApps(searchQuery: String): LiveData<List<App>> {
         return appDao.searchApps(searchQuery)
+    }
+
+    override suspend fun getAppsPackageName(): List<String> {
+        return appDao.getAppsPackageName()
     }
 }

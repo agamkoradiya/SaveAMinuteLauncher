@@ -1,6 +1,8 @@
 package com.codefun.saveaminutelauncher.di
 
 import android.app.Application
+import android.app.usage.UsageStatsManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
 import com.codefun.saveaminutelauncher.data.local.AppDatabase
 import com.codefun.saveaminutelauncher.data.repository.AppRepositoryImpl
@@ -37,4 +39,8 @@ object LauncherModule {
         return AppRepositoryImpl(db.getAppDao())
     }
 
+    @Provides
+    fun provideUsageStatsManager(app: Application): UsageStatsManager {
+        return app.getSystemService(AppCompatActivity.USAGE_STATS_SERVICE) as UsageStatsManager
+    }
 }

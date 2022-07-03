@@ -139,6 +139,13 @@ class HomeScreenFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        lifecycleScope.launchWhenResumed {
+            mainViewModel.getScreenTimeAndSaveIt()
+        }
+        super.onResume()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

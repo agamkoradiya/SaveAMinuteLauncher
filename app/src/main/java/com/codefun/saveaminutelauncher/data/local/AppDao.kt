@@ -26,6 +26,13 @@ interface AppDao {
     fun insertApps(apps: List<App>)
 
     /**
+     * Update
+     */
+
+    @Query("UPDATE App SET screenTime = :screenTime WHERE packageName = :packageName ")
+    suspend fun updateScreenTime(packageName: String, screenTime: String?)
+
+    /**
      * Read
      */
 
@@ -38,4 +45,6 @@ interface AppDao {
     @Query("SELECT * FROM app WHERE name like :searchQuery || '%'")
     fun searchApps(searchQuery: String): LiveData<List<App>>
 
+    @Query("SELECT packageName FROM app")
+    fun getAppsPackageName(): List<String>
 }

@@ -10,13 +10,27 @@ import kotlinx.coroutines.flow.Flow
 
 interface AppRepository {
 
+    /**
+     * Insert
+     */
     suspend fun insertApp(app: App)
 
     suspend fun insertApps(apps: List<App>)
 
+    /**
+     * Update
+     */
+
+    suspend fun updateScreenTime(packageName: String, screenTime: String?)
+
+    /**
+     * Read
+     */
     fun getApps(): Flow<List<App>>
 
     fun getHomeScreenApps(): Flow<List<App>>
 
     fun searchApps(searchQuery: String): LiveData<List<App>>
+
+    suspend fun getAppsPackageName(): List<String>
 }
