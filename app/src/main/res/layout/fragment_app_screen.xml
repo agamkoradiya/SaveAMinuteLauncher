@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/App2ndTheme"
     android:background="?attr/colorPrimary"
     android:padding="20dp"
     tools:context=".presentation.fragments.app_screen.AppScreenFragment">
@@ -44,7 +43,8 @@
         android:id="@+id/apps_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
