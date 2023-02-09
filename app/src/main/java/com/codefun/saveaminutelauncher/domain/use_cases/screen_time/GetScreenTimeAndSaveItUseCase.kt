@@ -1,5 +1,6 @@
 package com.codefun.saveaminutelauncher.domain.use_cases.screen_time
 
+import android.app.usage.UsageStats
 import android.app.usage.UsageStatsManager
 import android.util.Log
 import com.codefun.saveaminutelauncher.di.ProgressBarModule
@@ -33,22 +34,49 @@ class GetScreenTimeAndSaveItUseCase @Inject constructor(
         c.set(Calendar.MINUTE, 0)
         c.set(Calendar.SECOND, 0)
         c.set(Calendar.MILLISECOND, 0)
-        Log.i(TAG, "invoke: ${c.timeInMillis}")
+        Log.i(TAG, "invoke Calender time ---: ${c.timeInMillis}")
+        Log.i(TAG, "invoke Begin time ---: ${beginTime}")
+        Log.i(TAG, "invoke End time ---: ${endTime}")
         val usageStatsMap = usageStatsManager.queryAndAggregateUsageStats(beginTime, endTime)
 
         if (usageStatsMap.isNotEmpty()) {
             appRepository.getAppsPackageName().forEach { packageName ->
                 usageStatsMap[packageName]?.let {
+                    Log.i(
+                        TAG,
+                        "invoke: $packageName - ${it.totalTimeInForeground} -  ${
+                            it.totalTimeInForeground.toDuration(DurationUnit.MILLISECONDS)
+                                .getReadableScreenTime()
+                        }"
+                    )
                     appRepository.updateScreenTime(
                         packageName = packageName,
-                        screenTime = it.totalTimeInForeground.toDuration(DurationUnit.MILLISECONDS).getReadableScreenTime()
+                        screenTime = it.totalTimeInForeground.toDuration(DurationUnit.MILLISECONDS)
+                            .getReadableScreenTime()
                     )
                 }
             }
         }
+
+        val queryUsageStats = usageStatsManager
+            .queryUsageStats(
+                UsageStatsManager.INTERVAL_DAILY, beginTime,
+                System.currentTimeMillis()
+            )
+
+        showAppUsageStats(queryUsageStats)
     }
 }
+private fun showAppUsageStats(usageStats: MutableList<UsageStats>) {
+    usageStats.sortWith(Comparator { right, left ->
+        compareValues(left.totalTimeInForeground, right.totalTimeInForeground)
+    })
 
+    usageStats.forEach { it ->
+        Log.d(TAG, "packageName: ${it.packageName}, lastTimeUsed: ${Date(it.lastTimeUsed)}, " +
+                "totalTimeInForeground: ${it.totalTimeInForeground}")
+    }
+}
 // TODO: Return more specific value like space, two floating point etc.
 fun Duration.getReadableScreenTime(): String? {
     return this.toComponents { hours, minutes, seconds, nanoseconds ->

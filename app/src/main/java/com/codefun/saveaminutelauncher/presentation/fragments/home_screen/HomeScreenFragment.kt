@@ -14,6 +14,7 @@ import com.codefun.saveaminutelauncher.R
 import com.codefun.saveaminutelauncher.databinding.FragmentHomeScreenBinding
 import com.codefun.saveaminutelauncher.presentation.common.adapters.AppAdapter
 import com.codefun.saveaminutelauncher.presentation.common.viewmodels.MainViewModel
+import com.codefun.saveaminutelauncher.util.LIFECYCLE_TAG
 import com.codefun.saveaminutelauncher.util.listeners.OnSwipeTouchListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -46,6 +47,7 @@ class HomeScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.i(LIFECYCLE_TAG, "onViewCreated: called")
 
         inItSwipeTouchListener()
         setUpProgressBarSection()
@@ -140,13 +142,20 @@ class HomeScreenFragment : Fragment() {
     }
 
     override fun onResume() {
+        Log.i(LIFECYCLE_TAG, "onResume: called")
         lifecycleScope.launchWhenResumed {
             mainViewModel.getScreenTimeAndSaveIt()
         }
         super.onResume()
     }
 
+    override fun onPause() {
+        Log.i(LIFECYCLE_TAG, "onPause: called")
+        super.onPause()
+    }
+
     override fun onDestroyView() {
+        Log.i(LIFECYCLE_TAG, "onDestroyView: called")
         super.onDestroyView()
         _binding = null
     }

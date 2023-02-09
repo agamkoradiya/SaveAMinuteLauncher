@@ -39,7 +39,7 @@ interface AppDao {
     @Query("SELECT * FROM app ORDER BY name ASC")
     fun getApps(): Flow<List<App>>
 
-    @Query("SELECT * FROM app WHERE isInHomeScreen = 1 ORDER BY name ASC")
+    @Query("SELECT * FROM app WHERE isInHomeScreen = 0 ORDER BY name ASC")
     fun getHomeScreenApps(): Flow<List<App>>
 
     @Query("SELECT * FROM app WHERE name like :searchQuery || '%'")

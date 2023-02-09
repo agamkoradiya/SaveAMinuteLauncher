@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.codefun.saveaminutelauncher.databinding.FragmentAppScreenBinding
 import com.codefun.saveaminutelauncher.presentation.common.adapters.AppAdapter
 import com.codefun.saveaminutelauncher.presentation.common.viewmodels.MainViewModel
+import com.codefun.saveaminutelauncher.util.LIFECYCLE_TAG
 import com.codefun.saveaminutelauncher.util.SEARCH_DELAY
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
@@ -44,6 +45,7 @@ class AppScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.i(LIFECYCLE_TAG, "onViewCreated: called")
 
         setUpSearchView()
         setUpRecyclerView()
@@ -74,7 +76,18 @@ class AppScreenFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.i(LIFECYCLE_TAG, "onResume: called")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i(LIFECYCLE_TAG, "onPause: called")
+    }
+
     override fun onDestroyView() {
+        Log.i(LIFECYCLE_TAG, "onDestroyView: called")
         super.onDestroyView()
         _binding = null
     }
