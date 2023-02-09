@@ -1,4 +1,4 @@
-# SaveAMinuteLauncher (Open Source)
+# SaveAMinuteLauncher (Open Source - Work in progress)
 My Dream Launcher
 
 * minimalist productive launcher for saving your valuable time
@@ -18,6 +18,7 @@ Design [XD file]: [Click here to download Dream Launcher.xd.zip](https://github.
 * [How to get circle adaptive apps icons](https://gist.github.com/ibrahimsn98/ba19bbaf5b5e67813657ec3e046c14f2)
 * [Handling shortcuts when building an Android Launcher](https://medium.com/android-news/nhandling-shortcuts-when-building-an-android-launcher-5908d0bb50d2)
 * [How to build launcher](https://www.androidauthority.com/make-a-custom-android-launcher-837342-837342/)
+* Change Android Theme Programmatically[https://arifaizin.medium.com/change-android-theme-programmatically-7883db890e23]
 
 # Inspiration
 * [Indistract Minimalist Launcher](https://play.google.com/store/apps/details?id=com.indistractablelauncher.android)
